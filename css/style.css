@@ -17,7 +17,6 @@ body{
 
     height: 364px;
     width: 380px;
-
     margin: 20px;
     border-radius: 5px;
 }
@@ -38,7 +37,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
 }
 
 .name-recipe, .timer-recipe{
@@ -77,8 +75,6 @@ body{
 .ingredients-and-description{
     display: flex;
     justify-content: space-around;
-
-  
 }
 
 .ingredients-recipe{
@@ -86,11 +82,6 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-
-.is-hidden{
-    visibility: hidden;
 }
 
 
@@ -110,3 +101,26 @@ body{
     background-color:#E7E7E7;;
 }
 
+
+/* filter */
+.filters{
+    display: flex;
+    flex-direction: row;
+}
+
+.ustensils-filter, .appliances-filter, .ingredients-filter{
+    display: flex;
+  
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 700px;
+    max-height: 400px;
+    overflow: scroll;
+
+}
+
+.button-filter{
+    width: 200px;
+    margin: 3px;
+    height: fit-content
+}
