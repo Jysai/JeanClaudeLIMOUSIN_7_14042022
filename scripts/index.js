@@ -40,9 +40,6 @@ recipes.forEach((recipe) => {
     <div class="picture-recipe"></div>
    `;
 
-
-  
-
   informationsRecipe.innerHTML = `<div class="name-and-timer"><h2 class="name-recipe">${recipe.name} </h2><span class="timer-recipe">${recipe.time}min </span></div>`;
 
   recipeDescription.textContent = `${recipe.description}`;
@@ -88,7 +85,9 @@ const arrayCookingtoolsWithoutDuplicates = Array.from(
   new Set(arrayCookingtoolsForDisplayFilters)
 );
 
-const arrayAppliancesWithoutDuplicates = Array.from(new Set(arrayAppliancesForFilters));
+const arrayAppliancesWithoutDuplicates = Array.from(
+  new Set(arrayAppliancesForFilters)
+);
 
 const arrayIngredientsWithoutDuplicates = Array.from(
   new Set(arrayIngredientForDisplayFilters)
@@ -98,29 +97,93 @@ const ingredientsFilterSection = document.querySelector(".ingredients-filter");
 const appliancesFilterSection = document.querySelector(".appliances-filter");
 const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
-arrayCookingtoolsWithoutDuplicates.forEach(element => {
-   const buttonCookingtools = document.createElement("button")
-   buttonCookingtools.classList.add("button-filter");
-
-   buttonCookingtools.innerHTML = element
-
-   cookingtoolsFilterSection.appendChild(buttonCookingtools)
-});
-
-arrayAppliancesWithoutDuplicates.forEach(element => {
-  const buttonCookingtools = document.createElement("button")
+arrayCookingtoolsWithoutDuplicates.forEach((element) => {
+  const buttonCookingtools = document.createElement("button");
   buttonCookingtools.classList.add("button-filter");
 
-  buttonCookingtools.innerHTML = element
+  buttonCookingtools.innerHTML = element;
 
-  appliancesFilterSection.appendChild(buttonCookingtools)
+  cookingtoolsFilterSection.appendChild(buttonCookingtools);
 });
 
-arrayIngredientsWithoutDuplicates.forEach(element => {
-  const buttonCookingtools = document.createElement("button")
+arrayAppliancesWithoutDuplicates.forEach((element) => {
+  const buttonCookingtools = document.createElement("button");
   buttonCookingtools.classList.add("button-filter");
 
-  buttonCookingtools.innerHTML = element
+  buttonCookingtools.innerHTML = element;
 
-  ingredientsFilterSection.appendChild(buttonCookingtools)
+  appliancesFilterSection.appendChild(buttonCookingtools);
 });
+
+arrayIngredientsWithoutDuplicates.forEach((element) => {
+  const buttonCookingtools = document.createElement("button");
+  buttonCookingtools.classList.add("button-filter");
+
+  buttonCookingtools.innerHTML = element;
+
+  ingredientsFilterSection.appendChild(buttonCookingtools);
+});
+
+document.querySelector(".button-ingredient").onclick = openFilterIngredients;
+
+function openFilterIngredients() {
+  document.querySelector(".ingredients-input-and-filters").style.display =
+    "block";
+  document.querySelector(".ingredients-input-and-filters").style.margin =
+    "10px";
+  document.querySelector(".button-ingredient").style.display = "none";
+  document.getElementById("search-filter-ingredient-input").focus();
+}
+
+document.querySelector(".button-appliance").onclick = openFilterAppliances;
+
+function openFilterAppliances() {
+  document.querySelector(".appliances-input-and-filters").style.display =
+    "block";
+  document.querySelector(".appliances-input-and-filters").style.margin = "10px";
+  document.querySelector(".button-appliance").style.display = "none";
+  document.getElementById("search-filter-appliance-input").focus();
+}
+
+document.querySelector(".button-ustensil").onclick = openFilterUstensils;
+
+function openFilterUstensils() {
+  document.querySelector(".ustensils-input-and-filters").style.display =
+    "block";
+  document.querySelector(".ustensils-input-and-filters").style.margin = "10px";
+  document.querySelector(".button-ustensil").style.display = "none";
+  document.getElementById("search-filter-ustensil-input").focus();
+}
+
+window.onclick = (e) => {
+  if (!e.target.closest(".button-appliance")) {
+    document.querySelector(".appliances-input-and-filters").style.display =
+      "none";
+    document.querySelector(".button-appliance").style.display = "flex";
+  }
+  if (e.target.closest(".appliances-input-and-filters")) {
+    document.querySelector(".appliances-input-and-filters").style.display =
+      "block";
+    document.querySelector(".button-appliance").style.display = "none";
+  }
+  if (!e.target.closest(".button-ingredient")) {
+    document.querySelector(".ingredients-input-and-filters").style.display =
+      "none";
+    document.querySelector(".button-ingredient").style.display = "flex";
+  }
+  if (e.target.closest(".ingredients-input-and-filters")) {
+    document.querySelector(".ingredients-input-and-filters").style.display =
+      "block";
+    document.querySelector(".button-ingredient").style.display = "none";
+  }
+  if (!e.target.closest(".button-ustensil")) {
+    document.querySelector(".ustensils-input-and-filters").style.display =
+      "none";
+    document.querySelector(".button-ustensil").style.display = "flex";
+  }
+  if (e.target.closest(".ustensils-input-and-filters")) {
+    document.querySelector(".ustensils-input-and-filters").style.display =
+      "block";
+    document.querySelector(".button-ustensil").style.display = "none";
+  }
+};
