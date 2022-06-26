@@ -1,17 +1,27 @@
 body {
-  margin: 0 auto;
-  max-width: 1500px;
+  max-width: 1300px;
   min-width: 359px;
+  margin: 0 auto;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .section-list-recipes {
   display: flex;
   justify-content: center;
+  max-width: 1300px;
   min-width: 310px;
 
   flex-wrap: wrap;
   position: absolute;
-  top: 115px;
+  top: 240px;
   z-index: -1;
 }
 
@@ -187,18 +197,17 @@ body {
 #search-filter-ingredient-input:focus,
 #search-filter-appliance-input:focus,
 #search-filter-ustensil-input:focus {
-    outline: none;
-    border: none;
-    padding-left: 10px ;
-    color: white;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+  color: white;
 }
 #search-filter-ingredient-input::placeholder,
 #search-filter-appliance-input::placeholder,
-#search-filter-ustensil-input::placeholder{
-    color: white;
-    font-weight: 300;
+#search-filter-ustensil-input::placeholder {
+  color: white;
+  font-weight: 300;
 }
-
 
 #search-filter-ingredient-input {
   background-color: #3282f7;
@@ -208,4 +217,39 @@ body {
 }
 #search-filter-ustensil-input {
   background-color: #ed6454;
+}
+.carrot-egg,
+.fa-blender,
+.fa-utensils {
+  display: none;
+}
+.title {
+  display: block;
+}
+
+@media (max-width: 865px) {
+  .title {
+    display: none;
+  }
+  .carrot-egg,
+  .fa-blender,
+  .fa-utensils {
+    display: block;
+  }
+
+  .button-appliance,
+  .button-ingredient,
+  .button-ustensil {
+    width: 100px;
+  }
+
+  .filters-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .section-list-recipes {
+    position: static;
+  }
 }
