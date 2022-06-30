@@ -9,20 +9,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d2186745d7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Les petits plats</title>
 </head>
 
 <body>
     
-
-    <img class="logo" src="assets\logo.png" alt="">    
+    
+    <img class="logo" src="assets\logo.png" alt="logo les petits plats">    
     <div class="searchbox-main">
         
-        <input type="search" id="searchbox-input" placeholder="Rechercher une recette">
+        <input type="search" id="searchbox-input" placeholder="Rechercher une recette" >
+        <div class="search-glass"><em class="fa fa-search"></em></div>
     </div>
-
+    <section class="filter-selection"></section>
     <section class="filters-section">
-
+        
         <section class="ingredients-button-input-and-filters">
 
             <button class="button-ingredient"><span class="title">Ingrédients</span>
@@ -35,7 +37,9 @@
             </section>
         </section>
         <section class="appliances-button-input-and-filters">
-            <button class="button-appliance"><span class="title">Appareils</span><em class="fas fa-blender"></em><em
+            <button class="button-appliance"><span class="title">Appareils</span>
+                <div class="blender"><em class="fas fa-blender"></em></div>
+                <em
                     class="fas fa-chevron-down"></em></button>
             <section class="appliances-input-and-filters">
                 <input type="search" id="search-filter-appliance-input" placeholder="Rechercher un appareil"></input>
@@ -43,7 +47,9 @@
             </section>
         </section>
         <section class="ustensils-button-input-and-filters">
-            <button class="button-ustensil"><span class="title">Ustensiles</span><i class="fas fa-utensils"></i><em
+            <button class="button-ustensil"><span class="title">Ustensiles</span>
+                <div class="utensils"><em class="fas fa-utensils"></em></div>
+                <em
                     class="fas fa-chevron-down"></em></button>
             <section class="ustensils-input-and-filters">
                 <input type="search" id="search-filter-ustensil-input" placeholder="Rechercher un ustensile">

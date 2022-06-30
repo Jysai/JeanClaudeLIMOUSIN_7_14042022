@@ -81,6 +81,10 @@ arrayCookingtoolsForFilters.forEach((element) => {
   arrayCookingtoolsForDisplayFilters.push(element.toLowerCase());
 });
 
+// let unique_names = [...new Set(arrayCookingtoolsForFilters)]
+
+// console.log(unique_names);
+
 const arrayCookingtoolsWithoutDuplicates = Array.from(
   new Set(arrayCookingtoolsForDisplayFilters)
 );
@@ -98,62 +102,60 @@ const appliancesFilterSection = document.querySelector(".appliances-filter");
 const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
 arrayCookingtoolsWithoutDuplicates.forEach((element) => {
-  const buttonCookingtools = document.createElement("button");
-  buttonCookingtools.classList.add("button-filter");
+  const buttonFilter = document.createElement("button");
+  buttonFilter.classList.add("button-filter-cooking-tools");
 
-  buttonCookingtools.innerHTML = element;
+  buttonFilter.innerHTML = element;
 
-  cookingtoolsFilterSection.appendChild(buttonCookingtools);
+  cookingtoolsFilterSection.appendChild(buttonFilter);
 });
 
 arrayAppliancesWithoutDuplicates.forEach((element) => {
-  const buttonCookingtools = document.createElement("button");
-  buttonCookingtools.classList.add("button-filter");
+  const buttonFilter = document.createElement("button");
+  buttonFilter.classList.add("button-filter-appliances");
 
-  buttonCookingtools.innerHTML = element;
+  buttonFilter.innerHTML = element;
 
-  appliancesFilterSection.appendChild(buttonCookingtools);
+  appliancesFilterSection.appendChild(buttonFilter);
 });
 
 arrayIngredientsWithoutDuplicates.forEach((element) => {
-  const buttonCookingtools = document.createElement("button");
-  buttonCookingtools.classList.add("button-filter");
+  const buttonFilter = document.createElement("button");
 
-  buttonCookingtools.innerHTML = element;
+  buttonFilter.classList.add("button-filter-ingredients");
 
-  ingredientsFilterSection.appendChild(buttonCookingtools);
+
+  buttonFilter.innerHTML = element;
+
+  ingredientsFilterSection.appendChild(buttonFilter);
 });
 
-document.querySelector(".button-ingredient").onclick = openFilterIngredients;
-
-function openFilterIngredients() {
+document.querySelector(".button-ingredient").addEventListener("click", () => {
   document.querySelector(".ingredients-input-and-filters").style.display =
     "block";
   document.querySelector(".ingredients-input-and-filters").style.margin =
     "10px";
   document.querySelector(".button-ingredient").style.display = "none";
   document.getElementById("search-filter-ingredient-input").focus();
-}
+})
 
-document.querySelector(".button-appliance").onclick = openFilterAppliances;
-
-function openFilterAppliances() {
+document.querySelector(".button-appliance").addEventListener("click", () => {
   document.querySelector(".appliances-input-and-filters").style.display =
     "block";
   document.querySelector(".appliances-input-and-filters").style.margin = "10px";
   document.querySelector(".button-appliance").style.display = "none";
   document.getElementById("search-filter-appliance-input").focus();
-}
+})
 
-document.querySelector(".button-ustensil").onclick = openFilterUstensils;
 
-function openFilterUstensils() {
+
+document.querySelector(".button-ustensil").addEventListener("click", () => {
   document.querySelector(".ustensils-input-and-filters").style.display =
     "block";
   document.querySelector(".ustensils-input-and-filters").style.margin = "10px";
   document.querySelector(".button-ustensil").style.display = "none";
   document.getElementById("search-filter-ustensil-input").focus();
-}
+})
 
 window.onclick = (e) => {
   if (!e.target.closest(".button-appliance")) {
@@ -187,3 +189,4 @@ window.onclick = (e) => {
     document.querySelector(".button-ustensil").style.display = "none";
   }
 };
+

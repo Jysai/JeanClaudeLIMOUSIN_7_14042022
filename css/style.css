@@ -105,7 +105,7 @@ body {
 #searchbox-input {
   height: 50px;
   width: 80%;
-
+  border: none;
   padding-left: 20px;
   color: #000000;
   background-color: #e7e7e7;
@@ -149,14 +149,28 @@ body {
   max-width: 700px;
 }
 
-.button-filter {
+input::-webkit-search-cancel-button{
+  display: none;
+}
+
+.button-filter-ingredients, 
+.button-filter-cooking-tools,
+.button-filter-appliances {
   width: 200px;
-  margin: 3px;
-  height: fit-content;
+ 
+  
+  height:  45px;
   border: none;
   background: none;
   color: white;
   text-transform: capitalize;
+}
+
+.button-filter-ingredients:hover, 
+.button-filter-cooking-tools:hover,
+.button-filter-appliances:hover{
+  cursor: pointer;
+  border: 1px solid;
 }
 
 .button-ingredient,
@@ -192,6 +206,7 @@ body {
   width: 100%;
   height: 50px;
   color: white;
+  border-radius: 5px 5px 0px 0px;
 }
 
 #search-filter-ingredient-input:focus,
@@ -219,12 +234,45 @@ body {
   background-color: #ed6454;
 }
 .carrot-egg,
-.fa-blender,
-.fa-utensils {
+.blender,
+.utensils {
   display: none;
 }
 .title {
   display: block;
+}
+.search-glass{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: #e7e7e7;
+ width: 50px;
+}
+.filter-selection{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ustensil-selection-filter,
+.appliance-selection-filter,
+.ingredient-selection-filter{
+  margin: 5px;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+.ustensil-selection-filter{
+  background-color:#ed6454;
+}
+
+.appliance-selection-filter{
+  background-color: #68d9a4
+}
+.ingredient-selection-filter{
+  background-color: #3282f7
 }
 
 @media (max-width: 865px) {
@@ -232,8 +280,8 @@ body {
     display: none;
   }
   .carrot-egg,
-  .fa-blender,
-  .fa-utensils {
+  .blender,
+  .utensils {
     display: block;
   }
 
