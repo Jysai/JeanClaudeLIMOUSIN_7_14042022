@@ -274,6 +274,9 @@ input::-webkit-search-cancel-button{
 .ingredient-selection-filter{
   background-color: #3282f7
 }
+.selection-filter{
+  text-transform: capitalize;
+}
 
 @media (max-width: 865px) {
   .title {

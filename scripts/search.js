@@ -12,25 +12,81 @@ const searchFilterUstensilsInput = document.getElementById(
   "search-filter-ustensil-input"
 );
 
-function filtersList() {
-  const filterSelectionArray = document.querySelectorAll(".selection-filter");
-  
+const buttonUstensilsFilter = document.querySelectorAll(
+  ".button-filter-cooking-tools"
+);
 
-  filterSelectionArray.forEach((element) => {
-    console.log(element);
-  });
-}
+const buttonIngredientsFilter = document.querySelectorAll(
+  ".button-filter-ingredients"
+);
+
+const buttonApplicanceFilter = document.querySelectorAll(
+  ".button-filter-appliances"
+);
 
 const filterSelection = document.querySelector(".filter-selection");
 
 function creationTag(classTag, currentElement) {
   const divFilter = document.createElement("div");
-
   divFilter.classList.add(classTag, "selection-filter");
-  divFilter.innerHTML = currentElement.innerHTML;
+  divFilter.textContent = currentElement.textContent;
+
   currentElement.style.display = "none";
   filterSelection.appendChild(divFilter);
   filtersList();
+}
+
+// function creationRestoredTag(classTag, tagRestored) {
+//   const buttonTag = document.createElement("button");
+//   buttonTag.classList.add(classTag);
+//   buttonTag.innerHTML = tagRestored;
+//   return buttonTag;
+// }
+
+
+function filtersList() {
+  const filterSelectionArray = document.querySelectorAll(".selection-filter");
+
+
+
+  filterSelectionArray.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      const tagRestored = e.target.textContent;
+
+      switch (e.target.classList.value) {
+        case "ingredient-selection-filter selection-filter":
+        // const createdButtonIngredients = creationRestoredTag(
+        //   "button-filter-ingredients",
+        //   tagRestored
+        // );
+        // document.querySelector('.ingredients-filter').appendChild(createdButtonIngredients)  
+        Array.from(document.querySelectorAll('.ingredients-filter button')).forEach(element => {
+          if (element.textContent === tagRestored) {
+            element.style.display = ""
+          }
+        })
+        break;
+
+        case "ustensil-selection-filter selection-filter":
+        Array.from(document.querySelectorAll('.ustensils-filter button')).forEach(element => {
+          if (element.textContent === tagRestored) {
+            element.style.display = ""
+          }
+        })
+        break;
+        
+        case "appliance-selection-filter selection-filter":
+        Array.from(document.querySelectorAll('.appliances-filter button')).forEach(element => {
+          if (element.textContent === tagRestored) {
+            element.style.display = ""
+          }
+        })
+        break;
+      }
+
+      e.target.remove();
+    });
+  });
 }
 
 // Moteur de recherche principal
@@ -38,16 +94,15 @@ searchInput.addEventListener("keyup", () => {
   const searchQuery = searchInput.value;
 
   articles.forEach((article) => {
-    const articleName = article.querySelector(".name-recipe").innerHTML;
+    const articleName = article.querySelector(".name-recipe").textContent;
     const articleDescription = article.querySelector(
       ".recipe-description"
-    ).innerHTML;
+    ).textContent;
     const articleIngredient =
-      article.querySelector(".ingredient-name").innerHTML;
+      article.querySelector(".ingredient-name").textContent;
 
     if (searchQuery.length > 3) {
       if (
-        // console.log(article.textContent)
         articleName.toLowerCase().match(searchQuery.toLowerCase()) ||
         articleDescription.toLowerCase().match(searchQuery.toLowerCase()) ||
         articleIngredient.toLowerCase().match(searchQuery.toLowerCase())
@@ -64,33 +119,16 @@ searchInput.addEventListener("keyup", () => {
 
 // Moteur de recherche pour les filtres ingrédients
 
-const buttonIngredientsFilter = document.querySelectorAll(
-  ".button-filter-ingredients"
-);
-
 buttonIngredientsFilter.forEach((element) => {
   element.addEventListener("click", () => {
     creationTag("ingredient-selection-filter", element);
-
-    // const divFilter = document.createElement("div");
-    // divFilter.classList.add("ingredient-selection-filter", "selection-filter");
-    // divFilter.innerHTML = element.innerHTML
-    // filterSelection.appendChild(divFilter)
   });
-});
 
-searchFilterIngredientsInput.addEventListener("keyup", () => {
-  const searchQuery = searchFilterIngredientsInput.value;
-  const ingredientFilter = document.querySelectorAll(
-    ".button-filter-ingredients"
-  );
+  searchFilterIngredientsInput.addEventListener("keyup", () => {
+    const searchQuery = searchFilterIngredientsInput.value;
 
-  ingredientFilter.forEach((element) => {
     if (searchQuery.length > 3) {
-      if (
-        // console.log(article.textContent)
-        element.innerHTML.toLowerCase().match(searchQuery.toLowerCase())
-      ) {
+      if (element.textContent.toLowerCase().match(searchQuery.toLowerCase())) {
         element.style.display = "block";
       } else {
         element.style.display = "none";
@@ -102,25 +140,17 @@ searchFilterIngredientsInput.addEventListener("keyup", () => {
 });
 
 // Moteur de recherche pour les filtres ustensiles
-const buttonUstensilsFilter = document.querySelectorAll(
-  ".button-filter-cooking-tools"
-);
 
 buttonUstensilsFilter.forEach((element) => {
   element.addEventListener("click", () => {
     creationTag("ustensil-selection-filter", element);
   });
-});
 
-searchFilterUstensilsInput.addEventListener("keyup", () => {
-  const searchQuery = searchFilterUstensilsInput.value;
-  const ustensilFilter = document.querySelectorAll(
-    ".button-filter-cooking-tools"
-  );
+  searchFilterUstensilsInput.addEventListener("keyup", () => {
+    const searchQuery = searchFilterUstensilsInput.value;
 
-  ustensilFilter.forEach((element) => {
     if (searchQuery.length > 3) {
-      if (element.innerHTML.toLowerCase().match(searchQuery.toLowerCase())) {
+      if (element.textContent.toLowerCase().match(searchQuery.toLowerCase())) {
         element.style.display = "block";
       } else {
         element.style.display = "none";
@@ -132,22 +162,17 @@ searchFilterUstensilsInput.addEventListener("keyup", () => {
 });
 
 // Moteur de recherche pour les filtres Appareils
-const buttonApplicanceFilter = document.querySelectorAll(
-  ".button-filter-appliances"
-);
 
 buttonApplicanceFilter.forEach((element) => {
   element.addEventListener("click", () => {
     creationTag("appliance-selection-filter", element);
   });
-});
 
-searchFilterAppliancesInput.addEventListener("keyup", () => {
-  const searchQuery = searchFilterAppliancesInput.value;
+  searchFilterAppliancesInput.addEventListener("keyup", () => {
+    const searchQuery = searchFilterAppliancesInput.value;
 
-  buttonApplicanceFilter.forEach((element) => {
     if (searchQuery.length > 3) {
-      if (element.innerHTML.toLowerCase().match(searchQuery.toLowerCase())) {
+      if (element.textContent.toLowerCase().match(searchQuery.toLowerCase())) {
         element.style.display = "block";
       } else {
         element.style.display = "none";

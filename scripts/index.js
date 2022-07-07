@@ -4,6 +4,9 @@ const recipesSection = document.querySelector(".section-list-recipes");
 const arrayIngredientsForFilters = [];
 const arrayCookingtoolsForFilters = [];
 const arrayAppliancesForFilters = [];
+const ingredientsFilterSection = document.querySelector(".ingredients-filter");
+const appliancesFilterSection = document.querySelector(".appliances-filter");
+const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
 recipes.forEach((recipe) => {
   const article = document.createElement("article");
@@ -25,7 +28,7 @@ recipes.forEach((recipe) => {
 
   const arrayIngredientsForArticle = [];
 
-  arrayAppliancesForFilters.push(recipe.appliance);
+  arrayAppliancesForFilters.push(recipe.appliance.toLowerCase());
 
   recipe.ingredients.forEach((ingredients) => {
     arrayIngredientsForArticle.push(ingredients);
@@ -33,7 +36,7 @@ recipes.forEach((recipe) => {
   });
 
   recipe.ustensils.forEach((ustensils) => {
-    arrayCookingtoolsForFilters.push(ustensils);
+    arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
   });
 
   article.innerHTML = `     
@@ -70,62 +73,38 @@ recipes.forEach((recipe) => {
   recipesSection.appendChild(article);
 });
 
-const arrayIngredientForDisplayFilters = [];
-const arrayCookingtoolsForDisplayFilters = [];
+const cookingsToolsUniqueForFilter = [...new Set(arrayCookingtoolsForFilters)];
+const appliancesUniqueForFilters = [...new Set(arrayAppliancesForFilters)];
+const ingredientsUniqueForFilters = [
+  ...new Set(arrayIngredientsForFilters.map((e) => e.ingredient.toLowerCase())),
+];
 
-arrayIngredientsForFilters.forEach((element) => {
-  arrayIngredientForDisplayFilters.push(element.ingredient.toLowerCase());
-});
 
-arrayCookingtoolsForFilters.forEach((element) => {
-  arrayCookingtoolsForDisplayFilters.push(element.toLowerCase());
-});
 
-// let unique_names = [...new Set(arrayCookingtoolsForFilters)]
-
-// console.log(unique_names);
-
-const arrayCookingtoolsWithoutDuplicates = Array.from(
-  new Set(arrayCookingtoolsForDisplayFilters)
-);
-
-const arrayAppliancesWithoutDuplicates = Array.from(
-  new Set(arrayAppliancesForFilters)
-);
-
-const arrayIngredientsWithoutDuplicates = Array.from(
-  new Set(arrayIngredientForDisplayFilters)
-);
-
-const ingredientsFilterSection = document.querySelector(".ingredients-filter");
-const appliancesFilterSection = document.querySelector(".appliances-filter");
-const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
-
-arrayCookingtoolsWithoutDuplicates.forEach((element) => {
+cookingsToolsUniqueForFilter.forEach((element) => {
   const buttonFilter = document.createElement("button");
   buttonFilter.classList.add("button-filter-cooking-tools");
 
-  buttonFilter.innerHTML = element;
+  buttonFilter.textContent = element;
 
   cookingtoolsFilterSection.appendChild(buttonFilter);
 });
 
-arrayAppliancesWithoutDuplicates.forEach((element) => {
+appliancesUniqueForFilters.forEach((element) => {
   const buttonFilter = document.createElement("button");
   buttonFilter.classList.add("button-filter-appliances");
 
-  buttonFilter.innerHTML = element;
+  buttonFilter.textContent = element;
 
   appliancesFilterSection.appendChild(buttonFilter);
 });
 
-arrayIngredientsWithoutDuplicates.forEach((element) => {
+ingredientsUniqueForFilters.forEach((element) => {
   const buttonFilter = document.createElement("button");
 
   buttonFilter.classList.add("button-filter-ingredients");
 
-
-  buttonFilter.innerHTML = element;
+  buttonFilter.textContent = element;
 
   ingredientsFilterSection.appendChild(buttonFilter);
 });
@@ -137,7 +116,7 @@ document.querySelector(".button-ingredient").addEventListener("click", () => {
     "10px";
   document.querySelector(".button-ingredient").style.display = "none";
   document.getElementById("search-filter-ingredient-input").focus();
-})
+});
 
 document.querySelector(".button-appliance").addEventListener("click", () => {
   document.querySelector(".appliances-input-and-filters").style.display =
@@ -145,9 +124,7 @@ document.querySelector(".button-appliance").addEventListener("click", () => {
   document.querySelector(".appliances-input-and-filters").style.margin = "10px";
   document.querySelector(".button-appliance").style.display = "none";
   document.getElementById("search-filter-appliance-input").focus();
-})
-
-
+});
 
 document.querySelector(".button-ustensil").addEventListener("click", () => {
   document.querySelector(".ustensils-input-and-filters").style.display =
@@ -155,7 +132,7 @@ document.querySelector(".button-ustensil").addEventListener("click", () => {
   document.querySelector(".ustensils-input-and-filters").style.margin = "10px";
   document.querySelector(".button-ustensil").style.display = "none";
   document.getElementById("search-filter-ustensil-input").focus();
-})
+});
 
 window.onclick = (e) => {
   if (!e.target.closest(".button-appliance")) {
@@ -189,4 +166,3 @@ window.onclick = (e) => {
     document.querySelector(".button-ustensil").style.display = "none";
   }
 };
-
