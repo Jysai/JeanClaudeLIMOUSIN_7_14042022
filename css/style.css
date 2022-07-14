@@ -4,6 +4,8 @@ body {
   margin: 0 auto;
 }
 
+
+
 .logo{
   display: flex;
   justify-content: center;
@@ -21,8 +23,12 @@ body {
 
   flex-wrap: wrap;
   position: absolute;
-  top: 240px;
+  top: 270px;
   z-index: -1;
+}
+
+.ingredient-name{
+  text-transform: capitalize;
 }
 
 .article-recipe {

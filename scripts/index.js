@@ -8,70 +8,68 @@ const ingredientsFilterSection = document.querySelector(".ingredients-filter");
 const appliancesFilterSection = document.querySelector(".appliances-filter");
 const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
-recipes.forEach((recipe) => {
-  const article = document.createElement("article");
-  article.classList.add("article-recipe");
-  article.setAttribute("data-id", `${recipe.id}`);
-  const articleId = article.getAttribute("data-id");
 
-  const informationsRecipe = document.createElement("div");
-  informationsRecipe.classList.add("informations-recipe");
+  recipes.forEach((recipe) => {
+    const article = document.createElement("article");
+    article.classList.add("article-recipe");
+    article.setAttribute("data-id", `${recipe.id}`);
+    const articleId = article.getAttribute("data-id");
 
-  const ingredientsAndDescriptions = document.createElement("div");
-  ingredientsAndDescriptions.classList.add("ingredients-and-description");
+    const informationsRecipe = document.createElement("div");
+    informationsRecipe.classList.add("informations-recipe");
 
-  const listIngredients = document.createElement("div");
-  listIngredients.classList.add("list-of-ingredients");
+    const ingredientsAndDescriptions = document.createElement("div");
+    ingredientsAndDescriptions.classList.add("ingredients-and-description");
 
-  const recipeDescription = document.createElement("span");
-  recipeDescription.classList.add("recipe-description");
+    const listIngredients = document.createElement("div");
+    listIngredients.classList.add("list-of-ingredients");
 
-  const arrayIngredientsForArticle = [];
+    const recipeDescription = document.createElement("span");
+    recipeDescription.classList.add("recipe-description");
 
-  arrayAppliancesForFilters.push(recipe.appliance.toLowerCase());
+    const arrayIngredientsForArticle = [];
 
-  recipe.ingredients.forEach((ingredients) => {
-    arrayIngredientsForArticle.push(ingredients);
-    arrayIngredientsForFilters.push(ingredients);
-  });
+    arrayAppliancesForFilters.push(recipe.appliance.toLowerCase());
 
-  recipe.ustensils.forEach((ustensils) => {
-    arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
-  });
+    recipe.ingredients.forEach((ingredients) => {
+      arrayIngredientsForArticle.push(ingredients);
+      arrayIngredientsForFilters.push(ingredients);
+    });
 
-  article.innerHTML = `     
+    recipe.ustensils.forEach((ustensils) => {
+      arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
+    });
+
+    article.innerHTML = `     
     <div class="picture-recipe"></div>
    `;
 
-  informationsRecipe.innerHTML = `<div class="name-and-timer"><h2 class="name-recipe">${recipe.name} </h2><span class="timer-recipe">${recipe.time}min </span></div>`;
+    informationsRecipe.innerHTML = `<div class="name-and-timer"><h2 class="name-recipe">${recipe.name} </h2><span class="timer-recipe">${recipe.time}min </span></div>`;
 
-  recipeDescription.textContent = `${recipe.description}`;
+    recipeDescription.textContent = `${recipe.description}`;
 
-  if (articleId == recipe.id) {
-    arrayIngredientsForArticle.forEach((element) => {
-      const ingredientsRecipe = document.createElement("span");
-      ingredientsRecipe.classList.add("ingredients-recipe");
+    if (articleId == recipe.id) {
+      arrayIngredientsForArticle.forEach((element) => {
+        const ingredientsRecipe = document.createElement("span");
+        ingredientsRecipe.classList.add("ingredients-recipe");
 
-      ingredientsRecipe.innerHTML = `<b class="ingredient-name">${
-        element.ingredient
-      }</b>${
-        element.quantity
-          ? ": " + element.quantity
-          : `${" "}` && element.quantite
-          ? ": " + element.quantite
-          : `${" "}`
-      } ${element.unit ? element.unit : `${" "}`} `;
+        ingredientsRecipe.innerHTML = `<b class="ingredient-name">${
+          element.ingredient
+        }</b>
+      ${element.quantity ? ": " + element.quantity : `${" "}`} 
+      ${element.unit ? element.unit : `${" "}`}`;
 
-      listIngredients.appendChild(ingredientsRecipe);
-    });
-  }
+        listIngredients.appendChild(ingredientsRecipe);
+      });
+    }
 
-  ingredientsAndDescriptions.appendChild(listIngredients);
-  ingredientsAndDescriptions.appendChild(recipeDescription);
-  informationsRecipe.appendChild(ingredientsAndDescriptions);
-  article.appendChild(informationsRecipe);
-  recipesSection.appendChild(article);
-});
+    ingredientsAndDescriptions.appendChild(listIngredients);
+    ingredientsAndDescriptions.appendChild(recipeDescription);
+    informationsRecipe.appendChild(ingredientsAndDescriptions);
+    article.appendChild(informationsRecipe);
+    recipesSection.appendChild(article);
+  });
+
 
 const cookingsToolsUniqueForFilter = [...new Set(arrayCookingtoolsForFilters)];
 const appliancesUniqueForFilters = [...new Set(arrayAppliancesForFilters)];
@@ -79,11 +77,9 @@ const ingredientsUniqueForFilters = [
   ...new Set(arrayIngredientsForFilters.map((e) => e.ingredient.toLowerCase())),
 ];
 
-
-
 cookingsToolsUniqueForFilter.forEach((element) => {
   const buttonFilter = document.createElement("button");
-  buttonFilter.classList.add("button-filter-cooking-tools");
+  buttonFilter.classList.add("button-filter-cooking-tools", "button-tags");
 
   buttonFilter.textContent = element;
 
@@ -92,7 +88,7 @@ cookingsToolsUniqueForFilter.forEach((element) => {
 
 appliancesUniqueForFilters.forEach((element) => {
   const buttonFilter = document.createElement("button");
-  buttonFilter.classList.add("button-filter-appliances");
+  buttonFilter.classList.add("button-filter-appliances", "button-tags");
 
   buttonFilter.textContent = element;
 
@@ -102,7 +98,7 @@ appliancesUniqueForFilters.forEach((element) => {
 ingredientsUniqueForFilters.forEach((element) => {
   const buttonFilter = document.createElement("button");
 
-  buttonFilter.classList.add("button-filter-ingredients");
+  buttonFilter.classList.add("button-filter-ingredients", "button-tags");
 
   buttonFilter.textContent = element;
 
@@ -166,3 +162,5 @@ window.onclick = (e) => {
     document.querySelector(".button-ustensil").style.display = "none";
   }
 };
+
+export { arrayAppliancesForFilters };
