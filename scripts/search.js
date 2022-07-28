@@ -3,11 +3,6 @@ import { recipes } from "../data/recipes.js";
 const arrayIngredientsForFilters = [];
 const arrayCookingtoolsForFilters = [];
 const arrayAppliancesForFilters = [];
-const ingredientsFilterSection = document.querySelector(".ingredients-filter");
-const appliancesFilterSection = document.querySelector(".appliances-filter");
-const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
-
-const articles = document.querySelectorAll(".article-recipe");
 
 const searchInput = document.getElementById("searchbox-input");
 const searchFilterIngredientsInput = document.getElementById(
@@ -70,6 +65,7 @@ function displayRecipes(recipeDisplay) {
     element.ustensils.forEach((ustensils) => {
       arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
     });
+
 
     article.innerHTML = `     
       <div class="picture-recipe"></div>
@@ -152,29 +148,7 @@ function filterRecipes(allrecipes){
 
 
 searchInput.addEventListener("keyup", () => {
-  const searchQuery = searchInput.value;
   filterRecipes(recipes)
-  if (searchQuery.length >= 3) {
-    
-    const recipeDisplay = recipes.filter(
-      (recipe) =>
-        recipe.description.toLowerCase().match(searchQuery.toLowerCase()) ||
-        recipe.name.toLowerCase().match(searchQuery.toLowerCase()) ||
-        recipe.ingredients.some((ingredients) =>
-          ingredients.ingredient.toLowerCase().match(searchQuery.toLowerCase())
-        )
-    );
-   
-
-    recipesSection.innerHTML = "";
-
-
-    
-    displayRecipes(recipeDisplay);
-  } else {
-    filtersList();
-  }
-  
 });
 
 function creationTag(classTag, currentElement) {
@@ -261,12 +235,7 @@ function updatedFilters(recipeDisplay) {
 
 }
 
-// function creationRestoredTag(classTag, tagRestored) {
-//   const buttonTag = document.createElement("button");
-//   buttonTag.classList.add(classTag);
-//   buttonTag.innerHTML = tagRestored;
-//   return buttonTag;
-// }
+
 
 function filtersList() {
   const filterSelectionArray = document.querySelectorAll(".selection-filter");
