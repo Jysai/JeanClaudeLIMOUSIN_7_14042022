@@ -9,7 +9,12 @@ const appliancesFilterSection = document.querySelector(".appliances-filter");
 const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
 
-  recipes.forEach((recipe) => {
+
+
+
+  for (let index = 0; index < recipes.length; index++) {
+    const recipe = recipes[index];
+    
     const article = document.createElement("article");
     article.classList.add("article-recipe");
     article.setAttribute("data-id", `${recipe.id}`);
@@ -68,7 +73,13 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
     informationsRecipe.appendChild(ingredientsAndDescriptions);
     article.appendChild(informationsRecipe);
     recipesSection.appendChild(article);
-  });
+
+
+
+
+  }
+
+
 
 
 const cookingsToolsUniqueForFilter = [...new Set(arrayCookingtoolsForFilters)];
