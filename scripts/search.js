@@ -67,6 +67,7 @@ function displayRecipes(recipeDisplay) {
       arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
     });
 
+
     article.innerHTML = `     
       <div class="picture-recipe"></div>
      `;
@@ -145,7 +146,9 @@ function filterRecipes(allrecipes) {
 }
 
 searchInput.addEventListener("keyup", () => {
+
   filterRecipes(recipes);
+
 });
 
 function creationTag(classTag, currentElement) {
