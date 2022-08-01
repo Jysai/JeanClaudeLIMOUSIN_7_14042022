@@ -10,8 +10,6 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
 
 
-
-
   for (let index = 0; index < recipes.length; index++) {
     const recipe = recipes[index];
     
@@ -36,14 +34,18 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
 
     arrayAppliancesForFilters.push(recipe.appliance.toLowerCase());
 
-    recipe.ingredients.forEach((ingredients) => {
+    for (let index = 0; index < recipe.ingredients.length; index++) {
+      const ingredients = recipe.ingredients[index];
+
       arrayIngredientsForArticle.push(ingredients);
       arrayIngredientsForFilters.push(ingredients);
-    });
+    };
 
-    recipe.ustensils.forEach((ustensils) => {
+    for (let index = 0; index < recipe.ustensils.length; index++) {
+      const ustensils = recipe.ustensils[index];
+
       arrayCookingtoolsForFilters.push(ustensils.toLowerCase());
-    });
+    };
 
     article.innerHTML = `     
     <div class="picture-recipe"></div>
@@ -54,7 +56,10 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
     recipeDescription.textContent = `${recipe.description}`;
 
     if (articleId == recipe.id) {
-      arrayIngredientsForArticle.forEach((element) => {
+    
+      for (let index = 0; index < arrayIngredientsForArticle.length; index++) {
+          const element = arrayIngredientsForArticle[index];
+
         const ingredientsRecipe = document.createElement("span");
         ingredientsRecipe.classList.add("ingredients-recipe");
 
@@ -65,7 +70,7 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
       ${element.unit ? element.unit : `${" "}`}`;
 
         listIngredients.appendChild(ingredientsRecipe);
-      });
+      };
     }
 
     ingredientsAndDescriptions.appendChild(listIngredients);
@@ -73,10 +78,6 @@ const cookingtoolsFilterSection = document.querySelector(".ustensils-filter");
     informationsRecipe.appendChild(ingredientsAndDescriptions);
     article.appendChild(informationsRecipe);
     recipesSection.appendChild(article);
-
-
-
-
   }
 
 
@@ -88,25 +89,33 @@ const ingredientsUniqueForFilters = [
   ...new Set(arrayIngredientsForFilters.map((e) => e.ingredient.toLowerCase())),
 ];
 
-cookingsToolsUniqueForFilter.forEach((element) => {
+
+
+for (let index = 0; index < cookingsToolsUniqueForFilter.length; index++) {
+  const element = cookingsToolsUniqueForFilter[index];
+
   const buttonFilter = document.createElement("button");
   buttonFilter.classList.add("button-filter-cooking-tools", "button-tags");
 
   buttonFilter.textContent = element;
 
   cookingtoolsFilterSection.appendChild(buttonFilter);
-});
+};
 
-appliancesUniqueForFilters.forEach((element) => {
+
+for (let index = 0; index < appliancesUniqueForFilters.length; index++) {
+  const element = appliancesUniqueForFilters[index];
   const buttonFilter = document.createElement("button");
   buttonFilter.classList.add("button-filter-appliances", "button-tags");
 
   buttonFilter.textContent = element;
 
   appliancesFilterSection.appendChild(buttonFilter);
-});
+};
 
-ingredientsUniqueForFilters.forEach((element) => {
+for (let index = 0; index < ingredientsUniqueForFilters.length; index++) {
+  const element = ingredientsUniqueForFilters[index];
+
   const buttonFilter = document.createElement("button");
 
   buttonFilter.classList.add("button-filter-ingredients", "button-tags");
@@ -114,7 +123,7 @@ ingredientsUniqueForFilters.forEach((element) => {
   buttonFilter.textContent = element;
 
   ingredientsFilterSection.appendChild(buttonFilter);
-});
+};
 
 document.querySelector(".button-ingredient").addEventListener("click", () => {
   document.querySelector(".ingredients-input-and-filters").style.display =
