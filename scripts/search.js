@@ -164,12 +164,28 @@ searchInput.addEventListener("keyup", () => {
 filterRecipes(recipes);
 
 function creationTag(classTag, currentElement) {
-  // Création d'un tag quand un filtre est sélectionné
-  const divFilter = document.createElement("div");
-  divFilter.classList.add(classTag, "selection-filter");
-  divFilter.textContent = currentElement.textContent;
 
-  filterSelection.appendChild(divFilter);
+
+ 
+  // Création d'un tag quand un filtre est sélectionné
+  const divMain = document.createElement("div");
+  const divSpan = document.createElement("span");
+  const emCross = document.createElement("em");
+  divMain.classList.add(classTag, "selection-filter",);
+  // divMain.classList.add("div-main");
+  emCross.classList.add("fa-solid")
+  emCross.classList.add("fa-circle-xmark");
+
+
+
+  divSpan.textContent = currentElement.textContent; 
+
+
+
+  divMain.appendChild(divSpan)
+  divMain.appendChild(emCross)
+ 
+  filterSelection.appendChild(divMain);
   filtersList();
   filterRecipes(recipes);
 }
@@ -193,7 +209,8 @@ function updatedFilters(recipeDisplay) {
     buttonFilter.classList.add("button-filter-ingredients", "button-tags");
 
     buttonFilter.textContent = element;
-
+  
+    
     ingredientsFilterSection.appendChild(buttonFilter);
 
     ingredientsFiteredArray.push(buttonFilter);
@@ -253,9 +270,11 @@ function filtersList() {
   const filterSelectionArray = document.querySelectorAll(".selection-filter");
 
   filterSelectionArray.forEach((element) => {
+    console.log(element);
     element.addEventListener("click", (e) => {
+      
+      element.remove();
 
-      e.target.remove();
       filterRecipes(recipes);
     });
   });
