@@ -153,7 +153,7 @@ function filterRecipes(allrecipes) {
   updatedFilters(recipeDisplay);
   displayRecipes(recipeDisplay);
 
-  if (arrayFilters.length == 0 ) {
+  if (arrayFilters.length == 0) {
     recipesSection.innerHTML = `<p class="no-recipe">"Aucune recette ne correspond à votre critère… vous pouvez chercher 'tarte aux pommes', 'poisson', etc."</p>`;
   }
 }
@@ -164,29 +164,22 @@ searchInput.addEventListener("keyup", () => {
 filterRecipes(recipes);
 
 function creationTag(classTag, currentElement) {
-
-
- 
   // Création d'un tag quand un filtre est sélectionné
   const divMain = document.createElement("div");
   const divSpan = document.createElement("span");
   const emCross = document.createElement("em");
-  divMain.classList.add(classTag, "selection-filter",);
+  divMain.classList.add(classTag, "selection-filter");
   // divMain.classList.add("div-main");
-  emCross.classList.add("fa-solid")
+  emCross.classList.add("fa-solid");
   emCross.classList.add("fa-circle-xmark");
 
+  divSpan.textContent = currentElement.textContent;
 
+  divMain.appendChild(divSpan);
+  divMain.appendChild(emCross);
 
-  divSpan.textContent = currentElement.textContent; 
-
-
-
-  divMain.appendChild(divSpan)
-  divMain.appendChild(emCross)
- 
   filterSelection.appendChild(divMain);
-  filtersList();
+  removeTag();
   filterRecipes(recipes);
 }
 
@@ -209,8 +202,7 @@ function updatedFilters(recipeDisplay) {
     buttonFilter.classList.add("button-filter-ingredients", "button-tags");
 
     buttonFilter.textContent = element;
-  
-    
+
     ingredientsFilterSection.appendChild(buttonFilter);
 
     ingredientsFiteredArray.push(buttonFilter);
@@ -265,14 +257,13 @@ function updatedFilters(recipeDisplay) {
   appliancesFitered(appliancesFiteredArray);
 }
 
-function filtersList() {
+function removeTag() {
   // Permet de retirer les tags sélectionnés
   const filterSelectionArray = document.querySelectorAll(".selection-filter");
 
   filterSelectionArray.forEach((element) => {
-    console.log(element);
-    element.addEventListener("click", (e) => {
-      
+    
+    element.addEventListener("click", () => {
       element.remove();
 
       filterRecipes(recipes);
